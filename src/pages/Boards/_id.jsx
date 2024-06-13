@@ -21,17 +21,21 @@ import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import { toast } from 'react-toastify'
+import { useNavigate } from "react-router-dom";
 
 function Board() {
   const [board, setBoard] = useState(null)
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if (!userInfo) {
+      navigate('/')
+    }
     
     const boardId = '665e751d53fcdd5803ca858c'
     // Call API
     fetchBoardDetailsAPI(boardId).then(board => {
-
-
       board.columns = mapOrder(board.columns, board.columnOrderIds, '_id')
 
       board.columns.forEach(column => {

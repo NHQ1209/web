@@ -75,7 +75,7 @@ function BoardBar({ board }) {
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Button
+        {/* <Button
           variant="outlined"
           startIcon={<PersonAddIcon />}
           sx={{
@@ -85,9 +85,9 @@ function BoardBar({ board }) {
           }}
         >
           Invite
-        </Button>
+        </Button> */}
 
-        <AvatarGroup
+        {/* <AvatarGroup
           max={7}
           sx={{
             gap: '10px',
@@ -163,7 +163,7 @@ function BoardBar({ board }) {
               src="man_236832.png"
             />
           </Tooltip>
-        </AvatarGroup>
+        </AvatarGroup> */}
       </Box>
     </Box>
   )
