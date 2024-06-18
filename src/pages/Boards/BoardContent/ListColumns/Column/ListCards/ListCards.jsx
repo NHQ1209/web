@@ -2,7 +2,12 @@ import Box from '@mui/material/Box'
 import Card from './Card/Card'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
-function ListCards({ cards }) {
+function ListCards({ cards, onReload }) {
+  const handleReload = () => {
+    console.log('reload')
+    onReload();
+  }
+
   return (
     <SortableContext items={cards?.map(c => c._id)} strategy={verticalListSortingStrategy}>
       <Box sx={{
@@ -22,7 +27,15 @@ function ListCards({ cards }) {
         '&::-webkit-scrollbar-thumb': { backgroundColor: '#ced0da' },
         '&::-webkit-scrollbar-thumb:hover': { backgroundColor: '#bfc2cf' }
       }}>
-        {cards?.map(card => <Card key={card._id} card={card} />)}
+        {
+          cards?.map(card => 
+            <Card 
+              key={card._id} 
+              card={card} 
+              onReload={handleReload}
+            />
+          )
+        }
       </Box>
     </SortableContext>
   )

@@ -168,19 +168,40 @@ function Board() {
     )
   }
 
+  const handleReload = () => {
+    console.log('reload')
+    const boardId = '665e751d53fcdd5803ca858c'
+    // Call API
+    fetchBoardDetailsAPI(boardId).then(board => {
+      board.columns = mapOrder(board.columns, board.columnOrderIds, '_id')
+
+      board.columns.forEach(column => {
+        
+        if (isEmpty(column.cards)) {
+          column.cards = [generatePlaceholderCard(column)]
+          column.cardOrderIds = [generatePlaceholderCard(column)._id]
+        } else {
+          column.cards = mapOrder(column.cards, column.cardOrderIds, '_id')
+        }
+      })
+
+      setBoard(board)
+    })
+  }
+
   return (
     <Container disableGutters maxWidth={false} sx={{ height: '100vh' }}>
       <AppBar />
       <BoardBar board={board} />
       <BoardContent
         board={board}
-
         createNewColumn={createNewColumn}
         createNewCard={createNewCard}
         moveColumns={moveColumns}
         moveCardInTheSameColumn={moveCardInTheSameColumn}
         moveCardToDifferentColumn={moveCardToDifferentColumn}
         deleteColumnDetails={deleteColumnDetails}
+        onReload={handleReload}
       />
     </Container>
   )

@@ -41,6 +41,11 @@ export const createNewCardAPI = async (newCardData) => {
   return response.data
 }
 
+export const updateCardAPI = async (data) => {
+  const response = await axios.post(`${API_ROOT}/v1/cards/updateCard`, data)
+  return response.data
+}
+
 export const loginAPI = async (data) => {
   const response = await axios.post(`${API_ROOT}/v1/users/login`, data)
   return response.data

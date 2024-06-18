@@ -35,10 +35,10 @@ function BoardContent({
   moveColumns,
   moveCardInTheSameColumn,
   moveCardToDifferentColumn,
-  deleteColumnDetails
+  deleteColumnDetails,
+  onReload,
 }) {
   const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } })
-
   const touchSensor = useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 500 } })
   const sensors = useSensors(mouseSensor, touchSensor)
   const [orderedColumns, setOrderedColumns] = useState([])
@@ -257,12 +257,15 @@ function BoardContent({
     return lastOverId.current ? [{ id: lastOverId.current }] : []
   }, [activeDragItemType, orderedColumns])
 
+  const handleReload = () => {
+    console.log('reload')
+    onReload()
+  }
+
   return (
     <DndContext
-      // Cảm biến (đã giải thích kỹ ở video số 30)
       sensors={sensors}
       collisionDetection={collisionDetectionStrategy}
-
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
@@ -278,6 +281,7 @@ function BoardContent({
           createNewColumn={createNewColumn}
           createNewCard={createNewCard}
           deleteColumnDetails={deleteColumnDetails}
+          onReload={handleReload}
         />
         <DragOverlay dropAnimation={customDropAnimation}>
           {!activeDragItemType && null}

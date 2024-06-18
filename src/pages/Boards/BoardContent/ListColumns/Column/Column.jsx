@@ -24,7 +24,7 @@ import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirm } from 'material-ui-confirm'
 
-function Column({ column, createNewCard, deleteColumnDetails }) {
+function Column({ column, createNewCard, deleteColumnDetails, onReload }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column }
@@ -83,6 +83,11 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
      
       deleteColumnDetails(column._id)
     }).catch(() => {})
+  }
+
+  const handleReload = () => {
+    console.log('reload');
+    onReload()
   }
 
   return (
@@ -165,7 +170,7 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
         </Box>
 
         {/* List Cards */}
-        <ListCards cards={orderedCards} />
+        <ListCards cards={orderedCards} onReload={handleReload} />
 
         {/* Box Column Footer */}
         <Box sx={{

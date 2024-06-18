@@ -10,6 +10,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
   const navigate = useNavigate();
@@ -23,6 +24,11 @@ function Register() {
     if (!name || name.trim() === '') {
         toast.error('Họ và Tên không được để trống!');
         return;
+    }
+
+    if (!email || email.trim() === '') {
+      toast.error('Email không được để trống!');
+      return;
     }
 
     if (!username || username.trim() === '') {
@@ -43,7 +49,8 @@ function Register() {
     let data = {
         name: name,
         username: username,
-        password: password
+        password: password,
+        email: email,
     }
 
     // Gọi API xử lý phía BE
@@ -77,6 +84,12 @@ function Register() {
           placeholder="Tên đăng nhập"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           type="password"

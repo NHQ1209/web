@@ -1,9 +1,9 @@
 // Authentication - SignIn SignUp
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { loginAPI } from "~/apis";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { loginAPI } from '~/apis';
 import { toast } from 'react-toastify'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   // State để lưu trữ tên đăng nhập và mật khẩu
@@ -20,13 +20,13 @@ function Login() {
 
   // Hàm xử lý sự kiện đăng nhập
   const handleLogin = () => {
-    if (!username || username.trim() === "") {
-      toast.error("Tên đăng nhập không được để trống!");
+    if (!username || username.trim() === '') {
+      toast.error('Tên đăng nhập không được để trống!');
       return;
     }
 
-    if (!password || password.trim() === "") {
-      toast.error("Mật khẩu không được để trống!");
+    if (!password || password.trim() === '') {
+      toast.error('Mật khẩu không được để trống!');
       return;
     }
 
@@ -54,7 +54,10 @@ function Login() {
 
   return (
     <>
-      <FormContainer>
+    
+      <FormContainer >
+
+        
         <h2>Trello</h2>
         <Input
           type="text"
@@ -79,6 +82,8 @@ function Login() {
         </BtnContainer>
         
       </FormContainer>
+
+
     </>
   );
 }
@@ -131,4 +136,6 @@ const FormContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  border: 2px solid blue;
+  border-radius: 25px;
 `;

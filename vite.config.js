@@ -17,4 +17,7 @@ export default defineConfig({
       { find: '~', replacement: '/src' }
     ]
   }
+  // optimizeDeps: {
+  //   exclude: ['dayjs'],
+  // },
 })
